@@ -1,6 +1,6 @@
 <script setup>
-import ActionCardButton from '@/app/components/ui/buttons/ActionCardButton.vue'
-import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
+import ActionCardButton from '@/app/components/ui/Buttons/ActionCardButton.vue'
+import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
 import ShopCartItem from '@/products/components/ShopCartItem.vue'
 import CartDetails from '@/products/components/CartDetails.vue'
 import TextInput from '../components/ui/Inputs/TextInput.vue'

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import BlackButton from '../components/ui/Buttons/BlackButton.vue'
-import TextInput from '../components/ui/Inputs/TextInput.vue'
+import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
+import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
 import CheckboxInput from '@/app/components/ui/Inputs/CheckboxInput.vue'
 
