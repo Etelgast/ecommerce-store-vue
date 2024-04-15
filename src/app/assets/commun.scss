@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.4;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+}
+
+button,
+optgroup,
+select,
+textarea {
+  font-family: $main-font;
+  padding: 0;
+  line-height: inherit;
+  color: inherit;
+}
+
+input {
+  font-family: $main-font;
+  line-height: inherit;
+  color: inherit;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+  cursor: pointer;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+input,
+textarea {
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-family: $main-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $main-font;
+  margin: 0;
+}
+
+p,
+ul {
+  font-family: $main-font;
+  line-height: 27px;
+}
+
+h1 {
+  font-size: 33px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 12px;
+  font-weight: 400;
+}
