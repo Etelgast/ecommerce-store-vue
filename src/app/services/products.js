@@ -53,3 +53,7 @@ export function getFilteredBlogArticles(params) {
 export function getFullArticle(id) {
   return axios.get(`${API_URL}/articles?id=${id}`)
 }
+
+export function placeOrder(data) {
+  return axios.post(`${API_URL}/orders`, data)
+}

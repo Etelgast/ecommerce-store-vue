@@ -209,6 +209,7 @@ onBeforeMount(() => {
     h5 {
       margin-top: 25px;
       color: $dark-gray;
+      text-transform: capitalize;
     }
 
     p {

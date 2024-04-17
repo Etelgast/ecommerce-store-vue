@@ -1,15 +1,53 @@
 <script setup>
-import { useProducts } from '@/products/composables/useProducts'
-const { listProducts } = useProducts()
+import { onMounted, ref } from 'vue'
+import router from '@/app/router'
+
+import { useOrder } from '@/products/composables/useOrder'
+const { getOrder, removeOrder, validateBillingForm } = useOrder()
+
+import { placeOrder } from '@/app/services/products'
 
 import RadioInput from '@/app/components/ui/Inputs/RadioInput.vue'
 import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
-import { onMounted, ref } from 'vue'
 
-const items = ref([])
+const props = defineProps({
+  billingDetails: Object
+})
+
+const orderDetails = ref({
+  products: []
+})
+
+async function sendOrder() {
+  const requiredFields = [
+    'firstName',
+    'lastName',
+    'country',
+    'streetAddress',
+    'postCode',
+    'city',
+    'phone',
+    'email'
+  ]
+  if (validateBillingForm(props.billingDetails, requiredFields)) {
+    try {
+      let data = getOrder()
+      const response = await placeOrder(data)
+      localStorage.removeItem('ac-products')
+      if (response.status === 201) {
+        removeOrder()
+        router.push({ name: 'home' })
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  } else {
+    alert('NEED TO FILL ALL REQUIRED INPUTS')
+  }
+}
 
 onMounted(() => {
-  items.value = listProducts()
+  orderDetails.value = getOrder()
 })
 </script>
 
@@ -23,17 +61,15 @@ onMounted(() => {
       </div>
       <div class="order__block-products">
         <ul>
-          <li v-for="item in items" :key="item.id">
-            <h3>{{ item.title }}</h3>
-            <span>$ {{ item.price }}</span>
+          <li v-for="product in orderDetails.products" :key="product.id">
+            <h3>{{ product.title }}</h3>
+            <span>$ {{ product.price }}</span>
           </li>
         </ul>
       </div>
       <div class="order__block-subtotal">
         <h3>Subtotal</h3>
-        <span
-          >$ {{ items.reduce((sum, item) => sum + Math.round(item.price * item.amount), 0) }}</span
-        >
+        <span>$ {{ orderDetails.summary }}</span>
       </div>
       <div class="order__block-shipping">
         <h3>Shipping</h3>
@@ -41,12 +77,7 @@ onMounted(() => {
       </div>
       <div class="order__block-total">
         <h3>Total</h3>
-        <span
-          >$
-          {{
-            items.reduce((sum, item) => sum + Math.round(item.price * item.amount), 0) + 15
-          }}</span
-        >
+        <span>$ {{ orderDetails.total }}</span>
       </div>
       <div class="order__block-options">
         <RadioInput :component-data="{ name: 'direct' }">Direct bank transfer</RadioInput>
@@ -75,7 +106,7 @@ onMounted(() => {
           </svg>
         </RadioInput>
       </div>
-      <BlackButton>Place Order</BlackButton>
+      <BlackButton @click.prevent="sendOrder" form="orderPersonalDetails">Place Order</BlackButton>
     </div>
   </section>
 </template>
