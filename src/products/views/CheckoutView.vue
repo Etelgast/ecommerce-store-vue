@@ -4,6 +4,7 @@ import YourOrderSection from '../components/Checkout/YourOrderSection.vue'
 import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
 import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
+import { ref } from 'vue'
 
 const couponInputComponent = new InputComponent(
   'text',
@@ -16,6 +17,19 @@ const couponInputComponent = new InputComponent(
   'coupon',
   'true'
 )
+
+const billingDetails = ref({
+  firstName: '',
+  lastName: '',
+  companyName: '',
+  country: '',
+  streetAddress: '',
+  postCode: '',
+  city: '',
+  phone: '',
+  email: '',
+  orderNotes: ''
+})
 </script>
 
 <template>
@@ -32,8 +46,8 @@ const couponInputComponent = new InputComponent(
       </div>
     </section>
     <div class="checkout-details">
-      <BillingForm />
-      <YourOrderSection />
+      <BillingForm v-model="billingDetails" />
+      <YourOrderSection :billing-details="billingDetails" />
     </div>
   </div>
 </template>

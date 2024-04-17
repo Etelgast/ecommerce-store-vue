@@ -1,20 +1,31 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
 import router from '@/app/router'
 
-import ActionCardButton from '@/app/components/ui/buttons/ActionCardButton.vue'
-import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
+import { useOrder } from '../composables/useOrder'
+const { fillOrder } = useOrder()
+
+import ActionCardButton from '@/app/components/ui/Buttons/ActionCardButton.vue'
+import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
 import CalculateShippingForm from '@/app/components/blocks/CalculateShippingForm.vue'
 
 const dropdownOptions = ['SELECT A COUNTRY', 'CITY', 'POST CODE / ZIP']
 const placeholder = 'calculate shipping'
 
-defineProps({
+const props = defineProps({
   summaryPrice: {
     type: Number,
     required: true
+  },
+  items: {
+    type: Array,
+    required: true
   }
 })
+
+function creatingOrderObject() {
+  fillOrder(props.items)
+  router.push({ name: 'checkout' })
+}
 </script>
 
 <template>
@@ -39,7 +50,7 @@ defineProps({
         <h3>Total</h3>
         <p>$ {{ summaryPrice + 15 }}</p>
       </div>
-      <BlackButton @click="router.push({ name: 'checkout' })">Proceed to Checkout</BlackButton>
+      <BlackButton @click="creatingOrderObject">Proceed to Checkout</BlackButton>
     </div>
   </div>
 </template>

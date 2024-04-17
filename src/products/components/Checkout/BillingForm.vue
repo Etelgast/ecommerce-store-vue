@@ -3,6 +3,8 @@ import InputComponent from '@/products/classes/InputComponent'
 import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
 import CheckboxInput from '@/app/components/ui/Inputs/CheckboxInput.vue'
 
+const formDetails = defineModel()
+
 const firstNameInput = new InputComponent(
   'text',
   'First name *',
@@ -10,7 +12,7 @@ const firstNameInput = new InputComponent(
   '',
   3,
   15,
-  'off',
+  'on',
   'first-name',
   true
 )
@@ -22,7 +24,7 @@ const lastNameInput = new InputComponent(
   '',
   3,
   30,
-  'off',
+  'on',
   'last-name',
   true
 )
@@ -39,16 +41,16 @@ const companyNameInput = new InputComponent(
   false
 )
 
-const countryInput = new InputComponent('text', 'Country', '', '', 3, 30, 'off', 'country', true)
+const countryInput = new InputComponent('text', 'Country *', '', '', 3, 30, 'off', 'country', true)
 
 const streetAddressInput = new InputComponent(
   'text',
-  'Street Address',
+  'Street Address *',
   'Your street address is not existing',
   '',
   5,
   50,
-  'off',
+  'on',
   'street-address',
   true
 )
@@ -60,7 +62,7 @@ const postCodeInput = new InputComponent(
   '',
   8,
   10,
-  'off',
+  'on',
   'post-code',
   true
 )
@@ -72,7 +74,7 @@ const cityInput = new InputComponent(
   '',
   3,
   20,
-  'off',
+  'on',
   'city',
   true
 )
@@ -84,7 +86,7 @@ const phoneInput = new InputComponent(
   '',
   8,
   15,
-  'off',
+  'on',
   'phone',
   true
 )
@@ -96,7 +98,7 @@ const emailInput = new InputComponent(
   '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$',
   5,
   30,
-  'off',
+  'on',
   'email',
   true
 )
@@ -117,21 +119,21 @@ const orderNotesInput = new InputComponent(
 <template>
   <div class="wrapper">
     <h2>Billing Details</h2>
-    <form class="billing-form">
+    <form class="billing-form" name="orderPersonalDetails" id="orderPersonalDetails">
       <div class="name-inputs__wrapper">
-        <TextInput :component-data="firstNameInput" />
-        <TextInput :component-data="lastNameInput" />
+        <TextInput :component-data="firstNameInput" v-model="formDetails.firstName" />
+        <TextInput :component-data="lastNameInput" v-model="formDetails.lastName" />
       </div>
-      <TextInput :component-data="companyNameInput" />
-      <TextInput :component-data="countryInput" />
-      <TextInput :component-data="streetAddressInput" />
-      <TextInput :component-data="postCodeInput" />
-      <TextInput :component-data="cityInput" />
-      <TextInput :component-data="phoneInput" />
-      <TextInput :component-data="emailInput" />
+      <TextInput :component-data="companyNameInput" v-model="formDetails.companyName" />
+      <TextInput :component-data="countryInput" v-model="formDetails.country" />
+      <TextInput :component-data="streetAddressInput" v-model="formDetails.streetAddress" />
+      <TextInput :component-data="postCodeInput" v-model="formDetails.postCode" />
+      <TextInput :component-data="cityInput" v-model="formDetails.city" />
+      <TextInput :component-data="phoneInput" v-model="formDetails.phone" />
+      <TextInput :component-data="emailInput" v-model="formDetails.email" />
       <CheckboxInput name="create-account">Create an account?</CheckboxInput>
       <CheckboxInput name="ship-to-address">Ship to a different address?</CheckboxInput>
-      <TextInput :component-data="orderNotesInput" />
+      <TextInput :component-data="orderNotesInput" v-model="formDetails.orderNotes" />
     </form>
   </div>
 </template>

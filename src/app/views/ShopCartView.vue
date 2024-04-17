@@ -1,14 +1,17 @@
 <script setup>
+import { onMounted, ref, watch } from 'vue'
+import { useProducts } from '@/products/composables/useProducts'
+const { listProducts } = useProducts()
+
+import { useOrder } from '@/products/composables/useOrder'
+const { calculateSummaryPrice } = useOrder()
+
 import ActionCardButton from '@/app/components/ui/Buttons/ActionCardButton.vue'
 import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
 import ShopCartItem from '@/products/components/ShopCartItem.vue'
 import CartDetails from '@/products/components/CartDetails.vue'
 import TextInput from '../components/ui/Inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
-
-import { useProducts } from '@/products/composables/useProducts'
-import { onMounted, ref, watch } from 'vue'
-const { listProducts } = useProducts()
 
 const couponInputComponent = new InputComponent(
   'text',
@@ -26,16 +29,11 @@ const items = ref([])
 const summaryPrice = ref(0)
 
 function updatingSummaryPrice() {
-  summaryPrice.value = items.value.reduce(
-    (sum, item) => sum + Math.round(item.price * item.amount),
-    0
-  )
-  console.log('WATCH')
+  summaryPrice.value = calculateSummaryPrice(items.value)
 }
 
 function updateListItems() {
   items.value = listProducts()
-  console.log('UPDATING')
 }
 
 onMounted(() => {
@@ -71,7 +69,7 @@ watch(
           </div>
         </div>
       </div>
-      <CartDetails :summary-price="summaryPrice" />
+      <CartDetails :summary-price="summaryPrice" :items="items" />
     </div>
   </div>
 </template>
