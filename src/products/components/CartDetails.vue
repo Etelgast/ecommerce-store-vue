@@ -50,7 +50,9 @@ function creatingOrderObject() {
         <h3>Total</h3>
         <p>$ {{ summaryPrice + 15 }}</p>
       </div>
-      <BlackButton @click="creatingOrderObject">Proceed to Checkout</BlackButton>
+      <BlackButton @click="creatingOrderObject" :disabled="props.items.length == 0"
+        >Proceed to Checkout</BlackButton
+      >
     </div>
   </div>
 </template>
