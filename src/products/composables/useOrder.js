@@ -22,6 +22,7 @@ export function useOrder() {
 
   function removeOrder() {
     localStorage.removeItem('order')
+    localStorage.removeItem('ac-products')
   }
 
   function validateBillingForm(billingDetails, requiredFields) {

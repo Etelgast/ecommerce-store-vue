@@ -1,10 +1,15 @@
 <script setup>
+import { ref, markRaw } from 'vue'
+
+import { useModals } from '@/products/composables/useModals'
+const modal = useModals()
+
 import BillingForm from '../components/Checkout/BillingForm.vue'
 import YourOrderSection from '../components/Checkout/YourOrderSection.vue'
 import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
 import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
-import { ref } from 'vue'
+import ModalConfirm from '@/app/components/ui/Modals/ModalConfirm.vue'
 
 const couponInputComponent = new InputComponent(
   'text',
@@ -30,9 +35,23 @@ const billingDetails = ref({
   email: '',
   orderNotes: ''
 })
+
+function openModalConfirmation() {
+  modal.component.value = markRaw(ModalConfirm)
+  modal.showModal()
+}
 </script>
 
 <template>
+  <Teleport to="#app">
+    <Transition>
+      <component
+        :is="modal.component.value"
+        v-if="modal.isModalShow.value"
+        @close="modal.hideModal('home')"
+      ></component>
+    </Transition>
+  </Teleport>
   <div class="checkout-wrapper">
     <h1>Checkout</h1>
     <section class="additional-section">
@@ -47,7 +66,7 @@ const billingDetails = ref({
     </section>
     <div class="checkout-details">
       <BillingForm v-model="billingDetails" />
-      <YourOrderSection :billing-details="billingDetails" />
+      <YourOrderSection :billing-details="billingDetails" @open-modal="openModalConfirmation" />
     </div>
   </div>
 </template>
@@ -115,5 +134,15 @@ const billingDetails = ref({
     flex-wrap: wrap;
     gap: clamp(2.438rem, 1.324rem + 5.57vw, 5.5rem);
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

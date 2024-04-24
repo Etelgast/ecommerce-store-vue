@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import router from '@/app/router'
 
 import { useOrder } from '@/products/composables/useOrder'
 const { getOrder, removeOrder, validateBillingForm } = useOrder()
@@ -9,6 +8,8 @@ import { placeOrder } from '@/app/services/products'
 
 import RadioInput from '@/app/components/ui/Inputs/RadioInput.vue'
 import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
+
+const emit = defineEmits(['openModal'])
 
 const props = defineProps({
   billingDetails: Object
@@ -33,10 +34,9 @@ async function sendOrder() {
     try {
       let data = getOrder()
       const response = await placeOrder(data)
-      localStorage.removeItem('ac-products')
       if (response.status === 201) {
         removeOrder()
-        router.push({ name: 'home' })
+        emit('openModal')
       }
     } catch (err) {
       console.log(err)
