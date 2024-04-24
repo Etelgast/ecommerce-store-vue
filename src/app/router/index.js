@@ -1,6 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/app/views/HomeView.vue'
 
+function checkAuth(to, from, next) {
+  if (localStorage.getItem('ac-token')) {
+    next({ name: 'account' })
+  } else {
+    next()
+  }
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -46,13 +54,19 @@ const router = createRouter({
       component: () => import('@/app/views/ShopCartView.vue')
     },
     {
+      path: '/drawer/checkout',
+      name: 'checkout',
+      component: () => import('@/products/views/CheckoutView.vue')
+    },
+    {
       path: '/search',
       name: 'search'
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/app/views/LoginView.vue')
+      component: () => import('@/app/views/LoginView.vue'),
+      beforeEnter: checkAuth
     },
     {
       path: '/privacy-policy',
@@ -70,9 +84,9 @@ const router = createRouter({
       component: () => import('@/app/views/AboutView.vue')
     },
     {
-      path: '/drawer/checkout',
-      name: 'checkout',
-      component: () => import('@/products/views/CheckoutView.vue')
+      path: '/account',
+      name: 'account',
+      component: () => import('@/app/views/AccountInfoView.vue')
     }
   ]
 })

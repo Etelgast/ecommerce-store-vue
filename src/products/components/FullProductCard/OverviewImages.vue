@@ -21,7 +21,7 @@ defineProps({
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 120px;
+  min-width: 120px;
   height: 100%;
 
   .side-img {
