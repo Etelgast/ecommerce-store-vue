@@ -1,6 +1,6 @@
 <script setup>
-import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
-import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
+import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
+import TextInput from '@/app/components/ui/inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
 
 const stateValue = defineModel()

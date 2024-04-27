@@ -1,7 +1,7 @@
 <script setup>
 import InputComponent from '@/products/classes/InputComponent'
-import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
-import CheckboxInput from '@/app/components/ui/Inputs/CheckboxInput.vue'
+import TextInput from '@/app/components/ui/inputs/TextInput.vue'
+import CheckboxInput from '@/app/components/ui/inputs/CheckboxInput.vue'
 
 const formDetails = defineModel()
 

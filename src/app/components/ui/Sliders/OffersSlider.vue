@@ -2,7 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { getOffersSlider } from './../../../services/products'
 
-import WhiteButton from '../Buttons/WhiteButton.vue'
+import OffersSliderSkeleton from '@/app/components/ui/sliders/OffersSliderSkeleton.vue'
+import WhiteButton from '../buttons/WhiteButton.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination } from 'swiper/modules'
 
@@ -10,12 +11,15 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css'
 
+const isLoading = ref(true)
+
 const offers = ref([])
 
-async function getOffers() {
+const getOffers = async () => {
   try {
     const { data } = await getOffersSlider()
     offers.value = data
+    isLoading.value = false
   } catch (err) {
     console.log(err)
   }
@@ -27,7 +31,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="offer-slider">
+  <section v-if="!isLoading" class="offer-slider">
     <Swiper :slides-per-view="1" :space-between="50" :modules="[Pagination]" :pagination="true">
       <swiper-slide class="swiper-slide" v-for="offer in offers" :key="offer.id">
         <article>
@@ -45,11 +49,12 @@ onMounted(() => {
       </swiper-slide>
     </Swiper>
   </section>
+  <OffersSliderSkeleton v-if="isLoading" />
 </template>
 
 <style lang="scss" scoped>
 .offer-slider {
-  margin: 0 auto;
+  margin-top: clamp(1rem, 0.773rem + 1.14vw, 1.625rem);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -6,8 +6,8 @@ const { getOrder, removeOrder, validateBillingForm } = useOrder()
 
 import { placeOrder } from '@/app/services/products'
 
-import RadioInput from '@/app/components/ui/Inputs/RadioInput.vue'
-import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
+import RadioInput from '@/app/components/ui/inputs/RadioInput.vue'
+import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
 
 const emit = defineEmits(['openModal'])
 

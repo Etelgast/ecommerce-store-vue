@@ -33,7 +33,7 @@ body {
 }
 
 .main-pane {
-  margin-top: clamp(1rem, 0.773rem + 1.14vw, 1.625rem);
+  // margin-top: clamp(1rem, 0.773rem + 1.14vw, 1.625rem);
   // max-width: 80ch;
 }
 </style>

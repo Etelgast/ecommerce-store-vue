@@ -6,7 +6,7 @@ import { getBlogArticles, getFilteredBlogArticles } from '../services/products'
 import { transformDate } from '@/products/composables/useTransfromDate'
 import debounce from 'lodash.debounce'
 
-import SearchInput from '@/app/components/ui/Inputs/SearchInput.vue'
+import SearchInput from '@/app/components/ui/inputs/SearchInput.vue'
 import PaginationSection from '@/app/components/blocks/PaginationSection.vue'
 
 const articles = ref([])

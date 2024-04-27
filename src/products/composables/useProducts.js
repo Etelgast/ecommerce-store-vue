@@ -1,28 +1,30 @@
 import { ref } from 'vue'
 
 const productsArray = new Set(JSON.parse(localStorage.getItem('ac-products')))
-const products = ref(productsArray)
 
 export function useProducts() {
+  const products = ref(productsArray)
+
   function isInProducts(id) {
-    return Array.from(products.value).some((obj) => obj.id === id)
+    return listProducts().some((obj) => obj.id === id)
   }
 
-  function toggleProduct(product) {
-    let obj = Array.from(products.value).find((obj) => obj.id === product.id)
-
-    if (obj) {
-      products.value.delete(obj)
+  function toggleProduct(product, amount) {
+    const objectToUpdate = listProducts().find((obj) => obj.id === product.id)
+    if (objectToUpdate) {
+      products.value.delete(objectToUpdate)
     } else {
-      products.value.add(product)
+      products.value.add({ ...product, amount })
     }
     localStorage.setItem('ac-products', JSON.stringify(listProducts()))
   }
 
   function removeProduct(id) {
-    let obj = Array.from(products.value).find((obj) => obj.id === id)
-    products.value.delete(obj)
-    localStorage.setItem('ac-products', JSON.stringify(listProducts()))
+    const objectToRemove = listProducts().find((obj) => obj.id === id)
+    if (objectToRemove) {
+      products.value.delete(objectToRemove)
+      localStorage.setItem('ac-products', JSON.stringify(listProducts()))
+    }
   }
 
   function listProducts() {
@@ -30,14 +32,23 @@ export function useProducts() {
   }
 
   function gettingAmount(id) {
-    return Array.from(products.value).find((obj) => obj.id === id)?.amount
+    return listProducts().find((obj) => obj.id === id).amount
   }
 
   function updatingAmount(id, count) {
-    const obj = Array.from(products.value).find((obj) => obj.id === id)
+    const obj = listProducts().find((obj) => obj.id === id)
     obj.amount = count
+    products.value.add(obj)
     localStorage.setItem('ac-products', JSON.stringify(listProducts()))
   }
 
-  return { isInProducts, toggleProduct, removeProduct, listProducts, gettingAmount, updatingAmount }
+  return {
+    isInProducts,
+    toggleProduct,
+    removeProduct,
+    listProducts,
+    gettingAmount,
+    updatingAmount,
+    products
+  }
 }

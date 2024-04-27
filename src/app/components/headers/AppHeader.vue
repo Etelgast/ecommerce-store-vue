@@ -1,13 +1,25 @@
 <script setup>
+import { ref, computed, onMounted, watch } from 'vue'
 import route from '@/app/router'
-import { ref, computed } from 'vue'
+
+import { useProducts } from '@/products/composables/useProducts'
+const { products, listProducts } = useProducts()
 
 import BurgerMenu from './../blocks/BurgerMenu.vue'
 
+const drawerCount = ref(0)
 const isBurgerMenuActive = ref(false)
 
 const isHomePage = computed(() => {
   return route.name === 'home'
+})
+
+watch(products.value, () => {
+  drawerCount.value = listProducts().length
+})
+
+onMounted(() => {
+  drawerCount.value = listProducts().length
 })
 </script>
 
@@ -42,9 +54,10 @@ const isHomePage = computed(() => {
               <img src="./../../assets/icons/search.svg" alt="" />
             </RouterLink>
           </li>
-          <li>
+          <li class="drawer-item">
             <RouterLink class="link" :to="{ name: 'drawer' }" aria-label="Shop Cart">
               <img src="./../../assets/icons/drawer.svg" alt="" />
+              <span class="drawer-counter" v-if="drawerCount > 0">{{ drawerCount }}</span>
             </RouterLink>
           </li>
           <li>
@@ -56,8 +69,9 @@ const isHomePage = computed(() => {
       </nav>
 
       <nav class="nav mobile">
-        <RouterLink class="link" :to="{ name: 'search' }" aria-label="Shop Cart">
+        <RouterLink class="link" :to="{ name: 'drawer' }" aria-label="Shop Cart">
           <img src="./../../assets/icons/drawer.svg" alt="" />
+          <span class="drawer-counter" v-if="drawerCount > 0">{{ drawerCount }}</span>
         </RouterLink>
         <img
           @click="isBurgerMenuActive = !isBurgerMenuActive"
@@ -87,21 +101,48 @@ const isHomePage = computed(() => {
   &.header__no-border {
     border-bottom: none;
   }
-}
 
-.header-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex: 1 1 666px;
-  gap: 1rem;
+  .header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex: 1 1 666px;
+    gap: 1rem;
+  }
 }
 
 .nav {
   display: flex;
   align-items: center;
   gap: clamp(1.5rem, 0.955rem + 2.73vw, 3rem); //48px;
+
+  .link-items {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+
+    li {
+      position: relative;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: $black;
+      transition: width 0.4s ease;
+    }
+
+    a:hover::before {
+      width: 100%;
+    }
+  }
 
   @include tablet-s() {
     width: 100%;
@@ -113,35 +154,22 @@ const isHomePage = computed(() => {
   }
 }
 
-.link-items {
+.link-icons {
   display: flex;
   align-items: center;
-  gap: 64px;
+  gap: 39px;
 
-  li {
+  .drawer-item {
     position: relative;
-    font-size: 20px;
-    cursor: pointer;
-  }
-
-  a::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: $black;
-    transition: width 0.4s ease;
-  }
-
-  a:hover::before {
-    width: 100%;
   }
 }
 
 .nav.mobile {
   display: none;
+
+  a:first-child {
+    position: relative;
+  }
 
   @include mobile-xl() {
     display: flex;
@@ -176,10 +204,18 @@ const isHomePage = computed(() => {
   }
 }
 
-.link-icons {
+.drawer-counter {
   display: flex;
   align-items: center;
-  gap: 39px;
+  justify-content: center;
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: $error;
+  color: $white;
 }
 
 .burger-menu {

@@ -1,6 +1,6 @@
 <script setup>
-import HeartFavouriteIcon from '@/app/components/ui/Icons/HeartFavouriteIcon.vue'
-import BadgeCard from '@/app/components/ui/Icons/BadgeCard.vue'
+import HeartFavouriteIcon from '@/app/components/ui/icons/HeartFavouriteIcon.vue'
+import BadgeCard from '@/app/components/ui/icons/BadgeCard.vue'
 import { useFavourites } from './../composables/useFavourites'
 
 import router from './../../app/router/index'

@@ -4,12 +4,12 @@ import { ref, markRaw } from 'vue'
 import { useModals } from '@/products/composables/useModals'
 const modal = useModals()
 
-import BillingForm from '../components/Checkout/BillingForm.vue'
-import YourOrderSection from '../components/Checkout/YourOrderSection.vue'
-import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
+import BillingForm from '../components/checkout/BillingForm.vue'
+import YourOrderSection from '../components/checkout/YourOrderSection.vue'
+import TextInput from '@/app/components/ui/inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
-import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
-import ModalConfirm from '@/app/components/ui/Modals/ModalConfirm.vue'
+import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
+import ModalConfirm from '@/app/components/ui/modals/ModalConfirm.vue'
 
 const couponInputComponent = new InputComponent(
   'text',

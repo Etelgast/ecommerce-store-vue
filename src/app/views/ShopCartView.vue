@@ -6,11 +6,11 @@ const { listProducts } = useProducts()
 import { useOrder } from '@/products/composables/useOrder'
 const { calculateSummaryPrice } = useOrder()
 
-import ActionCardButton from '@/app/components/ui/Buttons/ActionCardButton.vue'
-import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
+import ActionCardButton from '@/app/components/ui/buttons/ActionCardButton.vue'
+import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
 import ShopCartItem from '@/products/components/ShopCartItem.vue'
 import CartDetails from '@/products/components/CartDetails.vue'
-import TextInput from '../components/ui/Inputs/TextInput.vue'
+import TextInput from '../components/ui/inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
 
 const couponInputComponent = new InputComponent(
@@ -55,12 +55,14 @@ watch(
     <h1>Shopping Cart</h1>
     <div class="cart__body">
       <div class="cart__body-items">
-        <ShopCartItem
-          v-for="item in items"
-          :key="item.id"
-          :item="item"
-          @updating-event="updateListItems"
-        />
+        <TransitionGroup name="list">
+          <ShopCartItem
+            v-for="item in items"
+            :key="item.id"
+            :item="item"
+            @updating-event="updateListItems"
+          />
+        </TransitionGroup>
         <div class="items__actions-block">
           <ActionCardButton>UPDATE CART</ActionCardButton>
           <div class="actions-block__coupon">
@@ -97,6 +99,16 @@ watch(
   display: flex;
   flex-direction: column;
   gap: 25px;
+
+  .list-enter-active,
+  .list-leave-active {
+    transition: all 0.5s ease;
+  }
+  .list-enter-from,
+  .list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
 
   .items__actions-block {
     max-width: 100%;
