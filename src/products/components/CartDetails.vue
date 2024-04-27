@@ -4,8 +4,8 @@ import router from '@/app/router'
 import { useOrder } from '../composables/useOrder'
 const { fillOrder } = useOrder()
 
-import ActionCardButton from '@/app/components/ui/Buttons/ActionCardButton.vue'
-import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
+import ActionCardButton from '@/app/components/ui/buttons/ActionCardButton.vue'
+import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
 import CalculateShippingForm from '@/app/components/blocks/CalculateShippingForm.vue'
 
 const dropdownOptions = ['SELECT A COUNTRY', 'CITY', 'POST CODE / ZIP']

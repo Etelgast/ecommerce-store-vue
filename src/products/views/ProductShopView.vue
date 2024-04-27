@@ -2,9 +2,9 @@
 import { ref, watchEffect } from 'vue'
 import { getCardsBy } from '@/app/services/products'
 
-import SearchInput from '@/app/components/ui/Inputs/SearchInput.vue'
-import SortDropdownInput from '@/app/components/ui/Inputs/SortDropdownInput.vue'
-import PriceRangeInput from '@/app/components/ui/Inputs/PriceRangeInput.vue'
+import SearchInput from '@/app/components/ui/inputs/SearchInput.vue'
+import SortDropdownInput from '@/app/components/ui/inputs/SortDropdownInput.vue'
+import PriceRangeInput from '@/app/components/ui/inputs/PriceRangeInput.vue'
 import ProductListView from './../../products/views/ProductListView.vue'
 
 const isFilterMobile = ref(false)

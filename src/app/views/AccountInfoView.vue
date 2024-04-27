@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 
-import AccountNavigation from '@/app/components/blocks/Account/AccountNavigation.vue'
-import Dashboard from '@/app/components/blocks/Account/Dashboard.vue'
-import Orders from '@/app/components/blocks/Account/Orders.vue'
+import AccountNavigation from '@/products/components/blocks/account/AccountNavigation.vue'
+import DashboardComponent from '@/products/components/blocks/account/DashboardComponent.vue'
+import OrdersComponent from '@/products/components/blocks/account/OrdersComponent.vue'
 
 const state = ref(0)
 </script>
@@ -12,9 +12,9 @@ const state = ref(0)
   <div class="account-info">
     <h1 v-if="state === 0">My Account</h1>
     <AccountNavigation v-model="state" />
-    <Dashboard v-if="state === 0" />
-    <Orders v-if="state === 1" />
-    <Orders v-if="state === 2" />
+    <DashboardComponent v-if="state === 0" />
+    <OrdersComponent v-if="state === 1" />
+    <OrdersComponent v-if="state === 2" />
   </div>
 </template>
 

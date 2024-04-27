@@ -5,11 +5,11 @@ import InputComponent from '@/products/classes/InputComponent'
 
 import { sendReviewProduct } from '@/app/services/products'
 
-import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
-import TextArea from '@/app/components/ui/Inputs/TextArea.vue'
-import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
+import TextInput from '@/app/components/ui/inputs/TextInput.vue'
+import TextArea from '@/app/components/ui/inputs/TextArea.vue'
+import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
 import RatingStar from '@/app/components/blocks/RatingStars.vue'
-import CheckboxInput from '@/app/components/ui/Inputs/CheckboxInput.vue'
+import CheckboxInput from '@/app/components/ui/inputs/CheckboxInput.vue'
 
 const review = ref({
   comment: '',

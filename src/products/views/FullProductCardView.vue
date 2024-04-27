@@ -1,14 +1,15 @@
 <script setup>
-import { onBeforeMount, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { getFullCards } from '@/app/services/products'
 
-import AdditionalInfoSection from '@/products/components/FullProductCard/AdditionalInfoSection.vue'
-import OverviewImages from '@/products/components/FullProductCard/OverviewImages.vue'
-import DescriptionSection from '@/products/components/FullProductCard/DescriptionSection.vue'
+import AdditionalInfoSection from '@/products/components/fullProductCard/AdditionalInfoSection.vue'
+import OverviewImages from '@/products/components/fullProductCard/OverviewImages.vue'
+import DescriptionSection from '@/products/components/fullProductCard/DescriptionSection.vue'
 
-const fullProductCard = ref()
+const fullProductCard = ref(null)
+const isHeaderMessageActive = ref(false)
 
 const route = useRoute()
 
@@ -26,12 +27,26 @@ function openProductCard(data) {
   fullProductCard.value = Object.assign({}, ...data)
 }
 
-onBeforeMount(() => {
+const activateHeaderMessage = () => {
+  isHeaderMessageActive.value = true
+  window.scrollTo({ top: 0 })
+  setTimeout(() => {
+    isHeaderMessageActive.value = false
+  }, 8000)
+}
+
+onMounted(() => {
   getCard()
 })
 </script>
 
 <template>
+  <Transition name="bounce">
+    <section v-show="isHeaderMessageActive" class="header-message">
+      <span>The item added to your Shopping bag.</span>
+      <RouterLink :to="{ name: 'drawer' }">View Cart</RouterLink>
+    </section>
+  </Transition>
   <div v-if="fullProductCard" class="product-card">
     <div class="product-card__main-info">
       <OverviewImages
@@ -39,14 +54,8 @@ onBeforeMount(() => {
         :additional-images="fullProductCard.additional_img"
       />
       <DescriptionSection
-        :description="fullProductCard.description"
-        :price="fullProductCard.price"
-        :rate="fullProductCard.rate"
-        :categories="fullProductCard.categories"
-        :title="fullProductCard.title"
-        :comments="fullProductCard.comments"
-        :id="fullProductCard.id"
-        :main-image="fullProductCard.main_img"
+        :full-product-card="fullProductCard"
+        @adding-product-to-cart="activateHeaderMessage"
       />
     </div>
     <AdditionalInfoSection
@@ -62,6 +71,57 @@ onBeforeMount(() => {
 </template>
 
 <style lang="scss">
+.header-message {
+  padding-block: clamp(0.563rem, 0.335rem + 1.14vw, 1.188rem);
+  padding-inline: clamp(2.813rem, 2.131rem + 3.41vw, 4.688rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  background-color: $light-gray;
+  border-top: 2px solid $accent;
+
+  span {
+    display: block;
+    position: relative;
+    font-family: $main-font;
+
+    &::before {
+      content: url('/src/app/assets/icons/added-product.svg');
+      position: absolute;
+      top: 0;
+      left: -30px;
+      text-align: center;
+    }
+  }
+
+  a {
+    text-transform: uppercase;
+    color: $accent;
+    font-weight: 600;
+  }
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .product-card {
   margin-top: clamp(1.063rem, 0.085rem + 4.89vw, 3.75rem);
 }

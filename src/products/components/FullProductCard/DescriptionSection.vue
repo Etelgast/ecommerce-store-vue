@@ -1,34 +1,49 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 import { useFavourites } from '@/products/composables/useFavourites'
 const { toggleFavourite, isInFavourite } = useFavourites()
 
 import { useProducts } from '@/products/composables/useProducts'
-const { toggleProduct, isInProducts, gettingAmount } = useProducts()
+const { toggleProduct, isInProducts, gettingAmount, updatingAmount } = useProducts()
 
-import ActionCardButton from '@/app/components/ui/Buttons/ActionCardButton.vue'
-import HeartFavouriteIconSmall from '@/app/components/ui/Icons/HeartFavouriteIconSmall.vue'
-import CardCounter from '@/app/components/ui/Buttons/CardCounter.vue'
+import ActionCardButton from '@/app/components/ui/buttons/ActionCardButton.vue'
+import HeartFavouriteIconSmall from '@/app/components/ui/icons/HeartFavouriteIconSmall.vue'
+import CardCounter from '@/app/components/ui/buttons/CardCounter.vue'
 import ThirdPartyLinks from '@/app/components/blocks/ThirdPartyLinks.vue'
 
 const props = defineProps({
-  title: String,
-  price: String,
-  rate: Number,
-  comments: Array,
-  description: String,
-  id: Number,
-  categories: Array,
-  mainImage: String
+  fullProductCard: Object
 })
 
-const product = ref({
-  id: props.id,
-  title: props.title,
-  price: props.price,
-  amount: isInProducts(props.id) ? gettingAmount(props.id) : 1,
-  mainImage: props.mainImage
+const emit = defineEmits(['addingProductToCart'])
+
+const amount = ref(1)
+
+function getAmountOfProduct() {
+  if (isInProducts(props.fullProductCard.id)) {
+    amount.value = gettingAmount(props.fullProductCard.id)
+  }
+}
+
+function updateAmountOfProduct() {
+  if (isInProducts(props.fullProductCard.id)) {
+    updatingAmount(props.fullProductCard.id, amount)
+  }
+}
+
+function showHeaderMessage() {
+  if (isInProducts(props.fullProductCard.id)) {
+    emit('addingProductToCart', true)
+  }
+}
+
+onMounted(() => {
+  getAmountOfProduct()
+})
+
+watch(amount, () => {
+  updateAmountOfProduct()
 })
 </script>
 
@@ -36,37 +51,44 @@ const product = ref({
   <div class="main-info__description">
     <div class="main-content">
       <div class="main-content__title">
-        <h2>{{ title }}</h2>
-        <h3>$ {{ price }}</h3>
+        <h2>{{ props.fullProductCard.title }}</h2>
+        <h3>$ {{ props.fullProductCard.price }}</h3>
       </div>
 
       <div class="main-content__center">
         <span class="description__rate">
           <div class="description__rate-stars">
-            <img v-for="rate in rate" :key="rate" src="/src/app/assets/icons/star.svg" alt="rate" />
+            <img
+              v-for="rate in props.fullProductCard.rate"
+              :key="rate"
+              src="/src/app/assets/icons/star.svg"
+              alt="rate"
+            />
           </div>
-          <h5>{{ comments.length }} customer review</h5></span
+          <h5>{{ props.fullProductCard.comments.length }} customer review</h5></span
         >
         <p>
-          {{ description }}
+          {{ props.fullProductCard.description }}
         </p>
         <div class="description__adding">
-          <CardCounter v-model="product.amount"></CardCounter>
-          <ActionCardButton @click="toggleProduct(product)">{{
-            isInProducts(props.id) ? 'Remove from cart' : 'Add to cart'
-          }}</ActionCardButton>
+          <CardCounter v-model="amount"></CardCounter>
+          <ActionCardButton
+            @click="toggleProduct(props.fullProductCard, amount), showHeaderMessage()"
+          >
+            {{ isInProducts(props.fullProductCard.id) ? 'Remove from cart' : 'Add to cart' }}
+          </ActionCardButton>
         </div>
         <div class="description__icons">
           <HeartFavouriteIconSmall
-            @click="toggleFavourite(id)"
-            :isFavourite="isInFavourite(id) ? true : false"
+            @click="toggleFavourite(props.fullProductCard.id)"
+            :isFavourite="isInFavourite(props.fullProductCard.id) ? true : false"
           />
           <span class="divider"></span>
           <ThirdPartyLinks />
         </div>
         <h5 class="description__cathegories">
           <b>Categories: </b>
-          <span> {{ categories.join(', ') }}</span>
+          <span> {{ props.fullProductCard.categories.join(', ') }}</span>
         </h5>
       </div>
     </div>

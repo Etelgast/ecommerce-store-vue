@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { useProducts } from '../composables/useProducts'
 const { updatingAmount, removeProduct } = useProducts()
-import CardCounter from '@/app/components/ui/Buttons/CardCounter.vue'
+import CardCounter from '@/app/components/ui/buttons/CardCounter.vue'
 
 const props = defineProps({
   item: Object
@@ -20,7 +20,7 @@ watch(amount, () => {
 
 <template>
   <article class="cart-item">
-    <img :src="'/src/app/assets/images/' + props.item.mainImage" alt="Item Image" />
+    <img :src="'/src/app/assets/images/' + props.item.main_img" alt="Item Image" />
     <div class="cart-item__info">
       <h2>{{ item.title }}</h2>
       <h4>Black / Medium</h4>

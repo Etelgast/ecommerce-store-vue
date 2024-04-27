@@ -1,8 +1,8 @@
 <script setup>
 import { registerNewUser } from '@/app/services/auth'
 
-import BlackButton from '@/app/components/ui/Buttons/BlackButton.vue'
-import TextInput from '@/app/components/ui/Inputs/TextInput.vue'
+import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
+import TextInput from '@/app/components/ui/inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
 import { ref } from 'vue'
 
