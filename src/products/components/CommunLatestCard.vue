@@ -24,7 +24,7 @@ async function getFullProductCard(id) {
 <template>
   <div class="shop-card" @click="getFullProductCard(id)">
     <div class="wrapper">
-      <img class="card-img" :src="`src/app/assets/images/${img}`" alt="" />
+      <img class="card-img" :src="`/src/products/images/${img}`" alt="" />
       <BadgeCard :in-stock="inStock" :on-sale="onSale" />
       <div class="card-actions">
         <div class="card-actions__flex">
