@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 
-import AccountNavigation from '@/products/components/blocks/account/AccountNavigation.vue'
-import DashboardComponent from '@/products/components/blocks/account/DashboardComponent.vue'
-import OrdersComponent from '@/products/components/blocks/account/OrdersComponent.vue'
+import AccountNavigation from '@/products/components/account/AccountNavigation.vue'
+import DashboardComponent from '@/products/components/account/DashboardComponent.vue'
+import OrdersComponent from '@/products/components/account/OrdersComponent.vue'
 
 const state = ref(0)
 </script>

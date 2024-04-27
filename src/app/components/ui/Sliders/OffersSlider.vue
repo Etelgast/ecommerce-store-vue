@@ -35,7 +35,7 @@ onMounted(() => {
     <Swiper :slides-per-view="1" :space-between="50" :modules="[Pagination]" :pagination="true">
       <swiper-slide class="swiper-slide" v-for="offer in offers" :key="offer.id">
         <article>
-          <img :src="`src/app/assets/images/${offer.img}`" alt="Offer" />
+          <img :src="`src/products/images/${offer.img}`" alt="Offer" />
           <div class="content">
             <div class="content-text">
               <h1>{{ offer.name }}</h1>
