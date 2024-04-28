@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
 import { useFavourites } from '@/products/composables/useFavourites'
 const { toggleFavourite, isInFavourite } = useFavourites()
@@ -38,6 +38,10 @@ function showHeaderMessage() {
   }
 }
 
+const buttonText = computed(() => {
+  return isInProducts(props.fullProductCard.id) ? 'Remove from cart' : 'Add to cart'
+})
+
 onMounted(() => {
   getAmountOfProduct()
 })
@@ -75,7 +79,7 @@ watch(amount, () => {
           <ActionCardButton
             @click="toggleProduct(props.fullProductCard, amount), showHeaderMessage()"
           >
-            {{ isInProducts(props.fullProductCard.id) ? 'Remove from cart' : 'Add to cart' }}
+            {{ buttonText }}
           </ActionCardButton>
         </div>
         <div class="description__icons">
