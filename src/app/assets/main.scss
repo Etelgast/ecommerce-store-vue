@@ -1,3 +1,7 @@
 @import './variables.scss';
 @import './commun.scss';
 @import './mixins.scss';
+
+body {
+  overflow-x: hidden;
+}

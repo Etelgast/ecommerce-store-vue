@@ -13,10 +13,10 @@ const state = ref(1)
   <section class="login">
     <div class="login-wrapper">
       <TransitionGroup name="list">
-        <Toggler v-show="state !== 3" v-model="state" />
-        <SignIn v-if="state === 1" v-model="state" />
-        <SignUp v-else-if="state === 2" />
-        <ForgotPassword v-else-if="state === 3" v-model="state" />
+        <Toggler v-show="state !== 3" v-model="state" key="toggler" />
+        <SignIn v-if="state === 1" v-model="state" key="signin" />
+        <SignUp v-else-if="state === 2" key="signup" />
+        <ForgotPassword v-else-if="state === 3" v-model="state" key="forgot-password" />
       </TransitionGroup>
     </div>
   </section>
