@@ -27,7 +27,7 @@ const emailInputComponent = new InputComponent(
       </h3>
       <TextInput :component-data="emailInputComponent" />
       <BlackButton>Reset Password</BlackButton>
-      <h4 @click="stateValue = 1" role="link">Wait... Return to Sign In</h4>
+      <h4 @click="stateValue = 'SignIn'" role="link">Wait... Return to Sign In</h4>
     </form>
   </section>
 </template>

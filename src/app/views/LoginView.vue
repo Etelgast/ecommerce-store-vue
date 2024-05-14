@@ -6,17 +6,16 @@ import SignUp from '@/products/components/login/SignUp.vue'
 import SignIn from '@/products/components/login/SignIn.vue'
 import ForgotPassword from '@/products/components/login/ForgotPassword.vue'
 
-const state = ref(1)
+const state = ref('SignIn')
+const tabs = { SignUp, SignIn, ForgotPassword }
 </script>
 
 <template>
   <section class="login">
     <div class="login-wrapper">
       <TransitionGroup name="list">
-        <Toggler v-show="state !== 3" v-model="state" key="toggler" />
-        <SignIn v-if="state === 1" v-model="state" key="signin" />
-        <SignUp v-else-if="state === 2" key="signup" />
-        <ForgotPassword v-else-if="state === 3" v-model="state" key="forgot-password" />
+        <Toggler v-show="state !== 'ForgotPassword'" v-model="state" key="toggler" />
+        <component :is="tabs[state]" :key="state" v-model="state"></component>
       </TransitionGroup>
     </div>
   </section>

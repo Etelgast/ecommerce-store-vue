@@ -66,7 +66,7 @@ async function authorizeUser() {
         >Email or password is not correct. Please, use a correct email and password to sign in</span
       >
       <BlackButton type="submit">Sign In</BlackButton>
-      <h4 @click="stateValue = 3" role="link">Have you forgotten your password?</h4>
+      <h4 @click="stateValue = 'ForgotPassword'" role="link">Have you forgotten your password?</h4>
     </form>
   </section>
 </template>

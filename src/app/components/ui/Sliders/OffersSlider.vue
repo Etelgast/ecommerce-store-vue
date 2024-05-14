@@ -32,7 +32,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <section v-if="!isLoading" class="offer-slider">
+  <OffersSliderSkeleton v-if="isLoading" />
+  <section v-else class="offer-slider">
     <Swiper :slides-per-view="1" :space-between="50" :modules="[Pagination]" :pagination="true">
       <swiper-slide class="swiper-slide" v-for="offer in offers" :key="offer.id">
         <article>
@@ -52,7 +53,6 @@ onMounted(() => {
       </swiper-slide>
     </Swiper>
   </section>
-  <OffersSliderSkeleton v-if="isLoading" />
 </template>
 
 <style lang="scss" scoped>
@@ -63,7 +63,6 @@ onMounted(() => {
   justify-content: center;
   width: 100%;
   height: clamp(22.125rem, 15.489rem + 33.18vw, 40.375rem);
-
   overflow: hidden;
 }
 

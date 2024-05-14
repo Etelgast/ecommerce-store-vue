@@ -20,7 +20,7 @@ watch(amount, () => {
 
 <template>
   <article class="cart-item">
-    <img :src="'/src/products/images/' + props.item.main_img" alt="Item Image" />
+    <img :src="'/src/products/images/' + props.item.img" alt="Item Image" />
     <div class="cart-item__info">
       <h2>{{ item.title }}</h2>
       <h4>Black / Medium</h4>

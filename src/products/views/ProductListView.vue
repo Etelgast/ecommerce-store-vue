@@ -67,16 +67,7 @@ onMounted(() => {
 
 <template>
   <div class="shop-content">
-    <CommunLatestCard
-      v-for="card in cards"
-      :key="card.id"
-      :title="card.title"
-      :price="card.price"
-      :img="card.img"
-      :id="card.id"
-      :in-stock="card.in_stock"
-      :on-sale="card.on_sale"
-    />
+    <CommunLatestCard v-for="card in cards" :key="card.id" :product="card" />
   </div>
 </template>
 

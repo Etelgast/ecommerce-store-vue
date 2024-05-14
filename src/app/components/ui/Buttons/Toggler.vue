@@ -4,8 +4,12 @@ const stateValue = defineModel()
 
 <template>
   <div class="toggler">
-    <button :class="{ active: stateValue === 1 }" @click="stateValue = 1">Sign In</button>
-    <button :class="{ active: stateValue === 2 }" @click="stateValue = 2">Register</button>
+    <button :class="{ active: stateValue === 'SignIn' }" @click="stateValue = 'SignIn'">
+      Sign In
+    </button>
+    <button :class="{ active: stateValue === 'SignUp' }" @click="stateValue = 'SignUp'">
+      Register
+    </button>
   </div>
 </template>
 
