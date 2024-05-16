@@ -8,7 +8,7 @@ import { useProducts } from '@/products/composables/useProducts'
 const { toggleProduct, isInProducts, gettingAmount, updatingAmount } = useProducts()
 
 import ActionCardButton from '@/app/components/ui/buttons/ActionCardButton.vue'
-import HeartFavouriteIconSmall from '@/app/components/ui/icons/HeartFavouriteIconSmall.vue'
+import BaseHeartIcon from '@/app/components/ui/icons/BaseHeartIcon.vue'
 import CardCounter from '@/app/components/ui/buttons/CardCounter.vue'
 import ThirdPartyLinks from '@/app/components/blocks/ThirdPartyLinks.vue'
 
@@ -20,19 +20,19 @@ const emit = defineEmits(['addingProductToCart'])
 
 const amount = ref(1)
 
-function getAmountOfProduct() {
+const getAmountOfProduct = () => {
   if (isInProducts(props.fullProductCard.id)) {
     amount.value = gettingAmount(props.fullProductCard.id)
   }
 }
 
-function updateAmountOfProduct() {
+const updateAmountOfProduct = () => {
   if (isInProducts(props.fullProductCard.id)) {
     updatingAmount(props.fullProductCard.id, amount)
   }
 }
 
-function showHeaderMessage() {
+const showHeaderMessage = () => {
   if (isInProducts(props.fullProductCard.id)) {
     emit('addingProductToCart', true)
   }
@@ -83,9 +83,9 @@ watch(amount, () => {
           </ActionCardButton>
         </div>
         <div class="description__icons">
-          <HeartFavouriteIconSmall
+          <BaseHeartIcon
             @click="toggleFavourite(props.fullProductCard.id)"
-            :isFavourite="isInFavourite(props.fullProductCard.id) ? true : false"
+            :isFavourite="isInFavourite(props.fullProductCard.id)"
           />
           <span class="divider"></span>
           <ThirdPartyLinks />

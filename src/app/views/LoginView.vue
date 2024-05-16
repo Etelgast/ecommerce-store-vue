@@ -13,10 +13,10 @@ const tabs = { SignUp, SignIn, ForgotPassword }
 <template>
   <section class="login">
     <div class="login-wrapper">
-      <TransitionGroup name="list">
-        <Toggler v-show="state !== 'ForgotPassword'" v-model="state" key="toggler" />
+      <Toggler v-show="state !== 'ForgotPassword'" v-model="state" key="toggler" />
+      <Transition name="list">
         <component :is="tabs[state]" :key="state" v-model="state"></component>
-      </TransitionGroup>
+      </Transition>
     </div>
   </section>
 </template>
@@ -57,7 +57,6 @@ const tabs = { SignUp, SignIn, ForgotPassword }
   padding: 16px;
 }
 
-.list-move,
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -66,11 +65,5 @@ const tabs = { SignUp, SignIn, ForgotPassword }
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(30px);
-}
-
-.list-leave-active {
-  position: absolute;
-  transition: all 0.5s ease;
 }
 </style>

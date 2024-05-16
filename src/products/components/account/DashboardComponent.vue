@@ -10,9 +10,10 @@ const userName = computed(() => {
 
 <template>
   <section class="dashboard">
-    <span class="dashboard__welcome"
-      >{{ userName }} <RouterLink @click="logOut" to="login">Log Out</RouterLink>)</span
-    >
+    <span class="dashboard__welcome">
+      {{ userName }}
+      <RouterLink @click="logOut" to="login">Log Out</RouterLink>)
+    </span>
     <p>
       From your account dashboard you can view your <a>recent orders</a>, manage your
       <a>shipping and billing addresses</a>, and

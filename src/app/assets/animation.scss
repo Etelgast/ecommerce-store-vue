@@ -1,0 +1,55 @@
+@mixin transition-product-card-icons($component) {
+  .#{$component}-enter-from,
+  .#{$component}-leave-to {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .#{$component}-enter-active {
+    animation: bounce-in 0.5s;
+  }
+  .#{$component}-leave-active {
+    animation: bounce-in 0.5s reverse;
+  }
+  @keyframes #{$component} {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.25);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+@mixin transition-cards-list($component) {
+  .#{$component}-move,
+  .#{$component}-enter-active,
+  .#{$component}-leave-active {
+    transition: all 0.5s ease;
+  }
+
+  .#{$component}-enter-from,
+  .#{$component}-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  .#{$component}-leave-active {
+    position: absolute;
+  }
+}
+
+@mixin transition-article-blog-list($component) {
+  .#{$component}-enter-active,
+  .#{$component}-leave-active {
+    transition: all 0.7s ease;
+  }
+  .#{$component}-enter-from,
+  .#{$component}-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}

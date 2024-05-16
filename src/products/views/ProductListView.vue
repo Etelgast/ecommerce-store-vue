@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref, computed, watch } from 'vue'
-import { getLatestCards, getCardsBy } from './../../app/services/products'
+import { getLatestCards, getCardsBy } from '@/app/services/products'
 import debounce from 'lodash.debounce'
-import CommunLatestCard from './../components/CommunLatestCard.vue'
+import CommunLatestCard from '@/products/components/CommunLatestCard.vue'
 
 const props = defineProps({
   searchFiltered: String,
@@ -67,7 +67,9 @@ onMounted(() => {
 
 <template>
   <div class="shop-content">
-    <CommunLatestCard v-for="card in cards" :key="card.id" :product="card" />
+    <TransitionGroup name="list">
+      <CommunLatestCard v-for="card in cards" :key="card.id" :product="card" />
+    </TransitionGroup>
   </div>
 </template>
 
@@ -76,5 +78,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
   gap: clamp(1rem, 0.091rem + 4.55vw, 3.5rem);
+
+  @include transition-cards-list('list');
 }
 </style>

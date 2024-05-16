@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import { getOffersSlider } from './../../../services/products'
+import { getOffersSlider } from '@/app/services/products'
 
 import OffersSliderSkeleton from '@/app/components/ui/sliders/OffersSliderSkeleton.vue'
-import WhiteButton from '../buttons/WhiteButton.vue'
+import WhiteButton from '@/app/components/ui/buttons/WhiteButton.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination } from 'swiper/modules'
 
@@ -26,6 +26,10 @@ const getOffers = async () => {
   }
 }
 
+const openProductCardPage = (id) => {
+  router.push({ name: 'card', params: { id: id } })
+}
+
 onMounted(() => {
   getOffers()
 })
@@ -37,16 +41,14 @@ onMounted(() => {
     <Swiper :slides-per-view="1" :space-between="50" :modules="[Pagination]" :pagination="true">
       <swiper-slide class="swiper-slide" v-for="offer in offers" :key="offer.id">
         <article>
-          <img :src="`src/products/images/${offer.img}`" alt="Offer" />
+          <img :src="`/src/products/images/${offer.img}`" alt="Offer" />
           <div class="content">
             <div class="content-text">
               <h1>{{ offer.name }}</h1>
               <h2>$ {{ offer.price }}</h2>
             </div>
             <div>
-              <WhiteButton @click="router.push({ name: 'card', params: { id: `${offer.id}` } })"
-                >View Product</WhiteButton
-              >
+              <WhiteButton @click="openProductCardPage(offer.id)">View Product</WhiteButton>
             </div>
           </div>
         </article>
