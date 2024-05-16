@@ -79,6 +79,12 @@ const isErrorMessageVisible = computed(() => {
   return articles.value.length === 0
 })
 
+const transfromArticleCategoriesWithDate = computed(() => {
+  return (article) => {
+    return article.categories + ' ' + '- ' + transformDate(article.date)
+  }
+})
+
 onBeforeMount(() => {
   gettingBlogArticles()
 })
@@ -96,7 +102,7 @@ onBeforeMount(() => {
             v-for="categorie in categories"
             :key="categorie"
             class="categorie"
-            :class="{ 'categorie--active': categorie == queryParams.categorie }"
+            :class="{ 'categorie--active': categorie === queryParams.categorie }"
             @click="updatingCategorieParams(categorie)"
           >
             {{ categorie }}
@@ -105,18 +111,20 @@ onBeforeMount(() => {
       </div>
     </nav>
     <section class="blog-content">
-      <article
-        v-for="article in articles"
-        :key="article.id"
-        class="blog-content__article"
-        @click="openingArticlePage(article.id)"
-      >
-        <img :src="`src/app/assets/images/${article.image}`" alt="Article Image" />
-        <h5>{{ article.categories + ' ' + '- ' + transformDate(article.date) }}</h5>
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.content }}</p>
-        <a href="">Read More</a>
-      </article>
+      <TransitionGroup name="list">
+        <article
+          v-for="article in articles"
+          :key="article.id"
+          class="blog-content__article"
+          @click="openingArticlePage(article.id)"
+        >
+          <img :src="`/src/products/images/${article.image}`" alt="Article Image" />
+          <h5>{{ transfromArticleCategoriesWithDate(article) }}</h5>
+          <h2>{{ article.title }}</h2>
+          <p>{{ article.content }}</p>
+          <a href="">Read More</a>
+        </article>
+      </TransitionGroup>
       <div class="error-message" v-if="isErrorMessageVisible">
         <p>Nothing was found for your request</p>
       </div>
@@ -192,8 +200,9 @@ onBeforeMount(() => {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
   gap: clamp(2.438rem, 2.233rem + 1.02vw, 3rem);
   align-items: center;
-
   justify-content: center;
+
+  @include transition-article-blog-list('list');
 
   .blog-content__article {
     display: flex;
@@ -202,7 +211,6 @@ onBeforeMount(() => {
 
     img {
       width: 100%;
-
       object-fit: cover;
     }
 
@@ -233,9 +241,7 @@ onBeforeMount(() => {
 
   .error-message {
     grid-column: 1 / -1;
-
     text-align: center;
-
     padding: 0 1rem;
   }
 

@@ -50,7 +50,7 @@ onMounted(() => {
   <div v-if="fullProductCard" class="product-card">
     <div class="product-card__main-info">
       <OverviewImages
-        :main-image="fullProductCard.main_img"
+        :main-image="fullProductCard.img"
         :additional-images="fullProductCard.additional_img"
       />
       <DescriptionSection

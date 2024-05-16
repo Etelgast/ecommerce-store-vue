@@ -15,9 +15,7 @@ const props = defineProps({
   billingDetails: Object
 })
 
-const orderDetails = ref({
-  products: []
-})
+const orderDetails = ref({})
 
 async function sendOrder() {
   const requiredFields = [

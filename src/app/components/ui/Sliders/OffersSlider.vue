@@ -1,15 +1,16 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import { getOffersSlider } from './../../../services/products'
+import { getOffersSlider } from '@/app/services/products'
 
 import OffersSliderSkeleton from '@/app/components/ui/sliders/OffersSliderSkeleton.vue'
-import WhiteButton from '../buttons/WhiteButton.vue'
+import WhiteButton from '@/app/components/ui/buttons/WhiteButton.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination } from 'swiper/modules'
 
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css'
+import router from '@/app/router'
 
 const isLoading = ref(true)
 
@@ -25,31 +26,35 @@ const getOffers = async () => {
   }
 }
 
+const openProductCardPage = (id) => {
+  router.push({ name: 'card', params: { id: id } })
+}
+
 onMounted(() => {
   getOffers()
 })
 </script>
 
 <template>
-  <section v-if="!isLoading" class="offer-slider">
+  <OffersSliderSkeleton v-if="isLoading" />
+  <section v-else class="offer-slider">
     <Swiper :slides-per-view="1" :space-between="50" :modules="[Pagination]" :pagination="true">
       <swiper-slide class="swiper-slide" v-for="offer in offers" :key="offer.id">
         <article>
-          <img :src="`src/products/images/${offer.img}`" alt="Offer" />
+          <img :src="`/src/products/images/${offer.img}`" alt="Offer" />
           <div class="content">
             <div class="content-text">
               <h1>{{ offer.name }}</h1>
               <h2>$ {{ offer.price }}</h2>
             </div>
             <div>
-              <WhiteButton>View Product</WhiteButton>
+              <WhiteButton @click="openProductCardPage(offer.id)">View Product</WhiteButton>
             </div>
           </div>
         </article>
       </swiper-slide>
     </Swiper>
   </section>
-  <OffersSliderSkeleton v-if="isLoading" />
 </template>
 
 <style lang="scss" scoped>
@@ -60,7 +65,6 @@ onMounted(() => {
   justify-content: center;
   width: 100%;
   height: clamp(22.125rem, 15.489rem + 33.18vw, 40.375rem);
-
   overflow: hidden;
 }
 

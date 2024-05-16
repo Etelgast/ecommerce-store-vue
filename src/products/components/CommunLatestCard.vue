@@ -1,59 +1,71 @@
 <script setup>
-import HeartFavouriteIcon from '@/app/components/ui/icons/HeartFavouriteIcon.vue'
-import BadgeCard from '@/app/components/ui/icons/BadgeCard.vue'
-import { useFavourites } from './../composables/useFavourites'
+import { computed } from 'vue'
+import router from '@/app/router/index'
 
-import router from './../../app/router/index'
+import { useFavourites } from './../composables/useFavourites'
+import { useProducts } from '../composables/useProducts'
+
+import BaseHeartIcon from '@/app/components/ui/icons/BaseHeartIcon.vue'
+import BadgeCard from '@/app/components/ui/icons/BadgeCard.vue'
+import BaseDrawerIcon from '@/app/components/ui/icons/BaseDrawerIcon.vue'
 
 const { toggleFavourite, isInFavourite } = useFavourites()
+const { toggleProduct, isInProducts } = useProducts()
 
-defineProps({
-  title: String,
-  price: Number,
-  img: String,
-  id: Number,
-  inStock: Boolean,
-  onSale: Boolean
+const props = defineProps({
+  product: Object
 })
 
-async function getFullProductCard(id) {
-  router.push({ name: 'card', params: { id: id } })
+const defaultAmount = 1
+
+const getFullProductCard = () => {
+  router.push({ name: 'card', params: { id: props.product.id } })
 }
+
+const isFavourite = computed(() => {
+  return isInFavourite(props.product.id)
+})
+
+const isAddedToProducts = computed(() => {
+  return isInProducts(props.product.id)
+})
 </script>
 
 <template>
-  <div class="shop-card" @click="getFullProductCard(id)">
+  <div class="shop-card">
     <div class="wrapper">
-      <img class="card-img" :src="`/src/products/images/${img}`" alt="" />
-      <BadgeCard :in-stock="inStock" :on-sale="onSale" />
+      <img
+        class="card-img"
+        :src="`/src/products/images/${props.product.img}`"
+        alt="Product"
+        @click.self="getFullProductCard"
+      />
+      <BadgeCard :in-stock="props.product.inStock" :on-sale="props.product.onSale" />
       <div class="card-actions">
         <div class="card-actions__flex">
-          <img class="action-icon__drawer" src="./../../app/assets/icons/drawer-card.svg" alt="" />
-          <img class="action-icon__eye" src="./../../app/assets/icons/eye.svg" alt="" />
-          <HeartFavouriteIcon
-            class="action-icon__heart"
-            @click="toggleFavourite(id)"
-            :class="{ selected: isInFavourite(id) }"
-            :isFavourite="isInFavourite(id) ? true : false"
+          <BaseDrawerIcon
+            @click="toggleProduct(props.product, defaultAmount)"
+            :is-added="isAddedToProducts"
           />
+          <img
+            class="action-icon__eye"
+            src="/src/app/assets/icons/eye.svg"
+            @click="getFullProductCard"
+            alt="Full Card"
+          />
+          <BaseHeartIcon @click="toggleFavourite(props.product.id)" :isFavourite="isFavourite" />
         </div>
       </div>
     </div>
     <div class="description">
-      <h3>{{ title }}</h3>
-      <h3>$ {{ price }}</h3>
+      <h3>{{ props.product.title }}</h3>
+      <h3>$ {{ props.product.price }}</h3>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .shop-card {
-  // width: clamp(136px, 32%, 380px);
-  // height: clamp(188px, 39%, 479px);
-
-  // max-width: 380px;
-  // max-height: 479px;
-
   display: flex;
   flex-direction: column;
   gap: clamp(0.375rem, -0.034rem + 2.05vw, 1.5rem);
@@ -112,18 +124,9 @@ async function getFullProductCard(id) {
   align-items: center;
   gap: 30px;
 
-  & > * {
-    cursor: pointer;
-  }
-
   .action-icon__eye {
     width: 32px;
     height: 32px;
-  }
-
-  .action-icon__drawer {
-    width: 28px;
-    height: 28px;
   }
 }
 </style>

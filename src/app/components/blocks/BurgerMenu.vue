@@ -48,7 +48,7 @@ function updateActiveState() {
       </li>
       <span></span>
       <li>
-        <RouterLink class="link" :to="{ name: 'search' }" @click="updateActiveState"
+        <RouterLink class="link" :to="{ name: 'login' }" @click="updateActiveState"
           >My Account</RouterLink
         >
       </li>
@@ -66,22 +66,21 @@ function updateActiveState() {
   visibility: hidden;
   position: fixed;
   left: -300px;
+  right: 0;
   opacity: 0;
+  transition: all 0.6s ease;
+  width: 100vw;
+  height: 100vh;
+  top: 13vh;
+  padding-top: 13px;
+  padding-inline: $padding-inline;
+  background-color: #fff;
+  z-index: 99;
 }
 
 .burger-menu__wrapper.active {
   visibility: visible;
-
-  top: calc(16vh - 39px);
   left: 0;
-  right: 0;
-  width: 100vw;
-  height: 100vh;
-  padding-top: 13px;
-  padding-inline: $padding-inline;
-  background-color: #fff;
-
-  z-index: 99;
   opacity: 1;
   transition: all 0.6s ease-in-out;
 
