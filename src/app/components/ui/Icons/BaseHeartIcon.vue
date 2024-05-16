@@ -80,6 +80,7 @@ defineProps({
 <style lang="scss" scoped>
 .action-icon__heart {
   position: relative;
+  cursor: pointer;
   @include transition-product-card-icons('heart');
 }
 </style>

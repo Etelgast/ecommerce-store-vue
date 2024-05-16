@@ -2,9 +2,9 @@
 import { onBeforeMount, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { transformDate } from '../composables/useTransfromDate'
+import { transformDate } from '@/products/composables/useTransfromDate'
 
-import { getFullArticle } from '../../app/services/products'
+import { getFullArticle } from '@/app/services/products'
 
 import ThirdPartyLinks from '@/app/components/blocks/ThirdPartyLinks.vue'
 

@@ -5,7 +5,7 @@ import { getCardsBy } from '@/app/services/products'
 import SearchInput from '@/app/components/ui/inputs/SearchInput.vue'
 import SortDropdownInput from '@/app/components/ui/inputs/SortDropdownInput.vue'
 import PriceRangeInput from '@/app/components/ui/inputs/PriceRangeInput.vue'
-import ProductListView from './../../products/views/ProductListView.vue'
+import ProductListView from '@/products/modules/home/components/ProductListView.vue'
 
 const isFilterMobile = ref(false)
 

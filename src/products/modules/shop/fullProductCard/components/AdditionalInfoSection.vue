@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
-import ReviewForm from '@/products/components/ReviewForm.vue'
-import ReviewComment from '@/products/components/ReviewComment.vue'
+import ReviewForm from './ReviewForm.vue'
+import ReviewComment from './ReviewComment.vue'
 
 const props = defineProps({
   description: String,

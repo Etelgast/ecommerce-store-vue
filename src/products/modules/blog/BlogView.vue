@@ -1,8 +1,8 @@
 <script setup>
 import { computed, onBeforeMount, ref, watch } from 'vue'
-import router from '../router'
+import router from '@/app/router/index'
 
-import { getBlogArticles, getFilteredBlogArticles } from '../services/products'
+import { getBlogArticles, getFilteredBlogArticles } from '@/app/services/products'
 import { transformDate } from '@/products/composables/useTransfromDate'
 import debounce from 'lodash.debounce'
 

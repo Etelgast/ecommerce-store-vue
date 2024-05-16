@@ -2,7 +2,7 @@
 import { onMounted, ref, computed, watch } from 'vue'
 import { getLatestCards, getCardsBy } from '@/app/services/products'
 import debounce from 'lodash.debounce'
-import CommunLatestCard from '@/products/components/CommunLatestCard.vue'
+import CommunLatestCard from '@/products/modules/home/components/CommunLatestCard.vue'
 
 const props = defineProps({
   searchFiltered: String,

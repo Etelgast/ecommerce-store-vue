@@ -4,9 +4,9 @@ import { useRoute } from 'vue-router'
 
 import { getFullCards } from '@/app/services/products'
 
-import AdditionalInfoSection from '@/products/components/fullProductCard/AdditionalInfoSection.vue'
-import OverviewImages from '@/products/components/fullProductCard/OverviewImages.vue'
-import DescriptionSection from '@/products/components/fullProductCard/DescriptionSection.vue'
+import AdditionalInfoSection from '@/products/modules/shop/fullProductCard/components/AdditionalInfoSection.vue'
+import OverviewImages from '@/products/modules/shop/fullProductCard/components/OverviewImages.vue'
+import DescriptionSection from '@/products/modules/shop/fullProductCard/components/DescriptionSection.vue'
 
 const fullProductCard = ref(null)
 const isHeaderMessageActive = ref(false)
