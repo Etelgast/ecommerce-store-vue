@@ -16,7 +16,7 @@ defineProps({
       <img
         v-for="rate in comment.rate"
         :key="rate"
-        src="../../app/assets/icons/star.svg"
+        src="/src/app/assets/icons/star.svg"
         alt="rate"
       />
     </div>

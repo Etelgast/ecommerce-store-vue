@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 import router from '@/app/router/index'
 
-import { useFavourites } from './../composables/useFavourites'
-import { useProducts } from '../composables/useProducts'
+import { useFavourites } from '@/products/composables/useFavourites'
+import { useProducts } from '@/products/composables/useProducts'
 
 import BaseHeartIcon from '@/app/components/ui/icons/BaseHeartIcon.vue'
 import BadgeCard from '@/app/components/ui/icons/BadgeCard.vue'

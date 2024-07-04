@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 
-import AccountNavigation from '@/products/components/account/AccountNavigation.vue'
-import DashboardComponent from '@/products/components/account/DashboardComponent.vue'
-import OrdersComponent from '@/products/components/account/OrdersComponent.vue'
+import AccountNavigation from './components/AccountNavigation.vue'
+import DashboardComponent from './components/DashboardComponent.vue'
+import OrdersComponent from './components/OrdersComponent.vue'
 
 const state = ref(0)
 const tabs = [DashboardComponent, OrdersComponent]

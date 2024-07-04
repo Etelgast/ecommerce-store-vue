@@ -1,6 +1,6 @@
 <script setup>
 import OffersSlider from '@/app/components/ui/sliders/OffersSlider.vue'
-import ProductListView from '@/products/views/ProductListView.vue'
+import ProductListView from '@/products/modules/home/components/ProductListView.vue'
 </script>
 
 <template>
