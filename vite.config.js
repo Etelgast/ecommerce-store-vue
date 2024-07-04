@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  base: 'https://etelgast.github.io/ecommerce-store-vue/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -18,7 +19,5 @@ export default defineConfig({
         additionalData: `@import "@/app/assets/main.scss";`
       }
     }
-  },
-
-  base: '/ecommerce-store'
+  }
 })
