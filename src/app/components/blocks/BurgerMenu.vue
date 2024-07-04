@@ -120,11 +120,11 @@ function updateActiveState() {
     }
 
     span + li::before {
-      background-image: url(./../../assets/icons/profile.svg);
+      background-image: url(/assets/icons/profile.svg);
     }
 
     span + li + li::before {
-      background-image: url(./../../assets/icons/logout.svg);
+      background-image: url(/assets/icons/logout.svg);
     }
   }
 }
