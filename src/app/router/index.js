@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomeView from '@/products/modules/home/HomeView.vue'
-
 function checkAuth(to, from, next) {
   if (localStorage.getItem('ac-token')) {
     next({ name: 'account' })
@@ -18,7 +16,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: HomeView
+    component: () => '@/products/modules/home/HomeView.vue'
   },
   {
     path: '/shop',
