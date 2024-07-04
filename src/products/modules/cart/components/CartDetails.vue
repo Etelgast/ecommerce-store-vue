@@ -1,7 +1,7 @@
 <script setup>
 import router from '@/app/router'
 
-import { useOrder } from '../composables/useOrder'
+import { useOrder } from '../../../composables/useOrder'
 const { fillOrder } = useOrder()
 
 import ActionCardButton from '@/app/components/ui/buttons/ActionCardButton.vue'

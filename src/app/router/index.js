@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomeView from '@/app/views/HomeView.vue'
+import HomeView from '@/products/modules/home/HomeView.vue'
 
 function checkAuth(to, from, next) {
   if (localStorage.getItem('ac-token')) {
@@ -23,39 +23,39 @@ const routes = [
   {
     path: '/shop',
 
-    component: () => import('@/app/views/ShopView.vue'),
+    component: () => import('@/products/modules/shop/ShopView.vue'),
     children: [
       {
         path: '',
         name: 'shop',
-        component: () => import('@/products/views/ProductShopView.vue')
+        component: () => import('@/products/modules/shop/components/ProductShopView.vue')
       },
       {
         path: 'card/:id',
         name: 'card',
-        component: () => import('@/products/views/FullProductCardView.vue')
+        component: () => import('@/products/modules/shop/fullProductCard/FullProductCardView.vue')
       }
     ]
   },
   {
     path: '/blog',
     name: 'blog',
-    component: () => import('@/app/views/BlogView.vue')
+    component: () => import('@/products/modules/blog/BlogView.vue')
   },
   {
     path: '/blog/article/:id',
     name: 'article',
-    component: () => import('@/products/views/ArticleBlogView.vue')
+    component: () => import('@/products/modules/blog/ArticleBlogView.vue')
   },
   {
     path: '/drawer',
     name: 'drawer',
-    component: () => import('@/app/views/ShopCartView.vue')
+    component: () => import('@/products/modules/cart/ShopCartView.vue')
   },
   {
     path: '/drawer/checkout',
     name: 'checkout',
-    component: () => import('@/products/views/CheckoutView.vue')
+    component: () => import('@/products/modules/checkout/CheckoutView.vue')
   },
   {
     path: '/search',
@@ -64,7 +64,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/app/views/LoginView.vue'),
+    component: () => import('@/products/modules/login/LoginView.vue'),
     beforeEnter: checkAuth
   },
   {
@@ -85,7 +85,7 @@ const routes = [
   {
     path: '/account',
     name: 'account',
-    component: () => import('@/app/views/AccountInfoView.vue')
+    component: () => import('@/products/modules/account/AccountInfoView.vue')
   }
 ]
 

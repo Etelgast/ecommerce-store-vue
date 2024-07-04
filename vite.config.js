@@ -18,5 +18,7 @@ export default defineConfig({
         additionalData: `@import "@/app/assets/main.scss";`
       }
     }
-  }
+  },
+
+  base: '/ecommerce-store'
 })

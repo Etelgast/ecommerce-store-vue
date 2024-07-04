@@ -4,8 +4,8 @@ import { ref, markRaw } from 'vue'
 import { useModals } from '@/products/composables/useModals'
 const modal = useModals()
 
-import BillingForm from '../components/checkout/BillingForm.vue'
-import YourOrderSection from '../components/checkout/YourOrderSection.vue'
+import BillingForm from './components/BillingForm.vue'
+import YourOrderSection from './components/YourOrderSection.vue'
 import TextInput from '@/app/components/ui/inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
 import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'

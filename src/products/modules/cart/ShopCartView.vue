@@ -8,9 +8,9 @@ const { calculateSummaryPrice } = useOrder()
 
 import ActionCardButton from '@/app/components/ui/buttons/ActionCardButton.vue'
 import BlackButton from '@/app/components/ui/buttons/BlackButton.vue'
-import ShopCartItem from '@/products/components/ShopCartItem.vue'
-import CartDetails from '@/products/components/CartDetails.vue'
-import TextInput from '../components/ui/inputs/TextInput.vue'
+import ShopCartItem from '@/products/modules/cart/components/ShopCartItem.vue'
+import CartDetails from '@/products/modules/cart/components/CartDetails.vue'
+import TextInput from '@/app/components/ui/inputs/TextInput.vue'
 import InputComponent from '@/products/classes/InputComponent'
 
 const couponInputComponent = new InputComponent(

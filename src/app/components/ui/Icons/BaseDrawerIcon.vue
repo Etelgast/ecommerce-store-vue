@@ -6,7 +6,7 @@ defineProps({
 
 <template>
   <div class="action-icon__drawer">
-    <TransitionGroup name="drawer">
+    <Transition name="drawer">
       <svg
         v-if="isAdded"
         class="drawer-icon"
@@ -53,7 +53,7 @@ defineProps({
           fill="black"
         />
       </svg>
-    </TransitionGroup>
+    </Transition>
   </div>
 </template>
 

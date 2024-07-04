@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 
 import Toggler from '@/app/components/ui/buttons/Toggler.vue'
-import SignUp from '@/products/components/login/SignUp.vue'
-import SignIn from '@/products/components/login/SignIn.vue'
-import ForgotPassword from '@/products/components/login/ForgotPassword.vue'
+import SignUp from './components/SignUp.vue'
+import SignIn from './components/SignIn.vue'
+import ForgotPassword from './components/ForgotPassword.vue'
 
 const state = ref('SignIn')
 const tabs = { SignUp, SignIn, ForgotPassword }

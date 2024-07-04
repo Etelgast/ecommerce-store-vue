@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue'
-import { useProducts } from '../composables/useProducts'
+import { useProducts } from '@/products/composables/useProducts'
 const { updatingAmount, removeProduct } = useProducts()
 import CardCounter from '@/app/components/ui/buttons/CardCounter.vue'
 
