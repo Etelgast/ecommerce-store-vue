@@ -1,5 +1,7 @@
 # ecommerce-store-vue
 
+[Link](https://6686a909101d2c0bd6ef23ff--stalwart-starship-68667b.netlify.app)
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
