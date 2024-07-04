@@ -1,12 +1,4 @@
 <script setup>
-// v-model between Parent and Child before defineModel
-
-// const props = defineProps(['modelValue'])
-// const emit = defineEmits(['update:modelValue'])
-// function onInput(e) {
-//   emit('update:modelValue', e.target.value)
-// }
-
 const modelValue = defineModel()
 </script>
 
