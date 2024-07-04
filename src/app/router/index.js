@@ -16,7 +16,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: () => '@/products/modules/home/HomeView.vue'
+    component: () => import('@/products/modules/home/HomeView.vue')
   },
   {
     path: '/shop',
@@ -90,7 +90,7 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     document.getElementById('app').scrollIntoView()
   }
 })
