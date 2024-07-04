@@ -27,7 +27,7 @@ onMounted(() => {
   <header :class="isHomePage || isBurgerMenuActive ? 'header header__no-border' : 'header'">
     <div class="header-wrapper">
       <RouterLink :to="{ name: 'home' }">
-        <img src="./../../assets/icons/logo.png" alt="Logo" />
+        <img src="/assets/icons/logo.png" alt="Logo" />
       </RouterLink>
       <nav class="nav">
         <ul class="link-items">
@@ -51,18 +51,18 @@ onMounted(() => {
         <ul class="link-icons">
           <li>
             <RouterLink class="link" :to="{ name: 'search' }" aria-label="Search">
-              <img src="./../../assets/icons/search.svg" alt="" />
+              <img src="/assets/icons/search.svg" alt="" />
             </RouterLink>
           </li>
           <li class="drawer-item">
             <RouterLink class="link" :to="{ name: 'drawer' }" aria-label="Shop Cart">
-              <img src="./../../assets/icons/drawer.svg" alt="" />
+              <img src="/assets/icons/drawer.svg" alt="" />
               <span class="drawer-counter" v-if="drawerCount > 0">{{ drawerCount }}</span>
             </RouterLink>
           </li>
           <li>
             <RouterLink class="link" :to="{ name: 'login' }" aria-label="Account">
-              <img src="./../../assets/icons/profile.svg" alt="" />
+              <img src="/assets/icons/profile.svg" alt="" />
             </RouterLink>
           </li>
         </ul>
@@ -70,13 +70,13 @@ onMounted(() => {
 
       <nav class="nav mobile">
         <RouterLink class="link" :to="{ name: 'drawer' }" aria-label="Shop Cart">
-          <img src="./../../assets/icons/drawer.svg" alt="" />
+          <img src="/assets/icons/drawer.svg" alt="" />
           <span class="drawer-counter" v-if="drawerCount > 0">{{ drawerCount }}</span>
         </RouterLink>
         <img
           @click="isBurgerMenuActive = !isBurgerMenuActive"
           class="burger-menu"
-          src="./../../assets/icons/burger-menu.svg"
+          src="/assets/icons/burger-menu.svg"
           alt="Menu"
           role="button"
         />
@@ -84,7 +84,7 @@ onMounted(() => {
 
       <div class="search-input__wrapper">
         <input class="header__search-input" type="search" placeholder="Search" />
-        <img src="./../../assets/icons/mobile-search.svg" alt="search" />
+        <img src="/assets/icons/mobile-search.svg" alt="search" />
       </div>
 
       <BurgerMenu :is-burger-menu-active="isBurgerMenuActive" v-model="isBurgerMenuActive" />

@@ -17,7 +17,7 @@
 
     <div class="about-us__center">
       <h2>Top trends</h2>
-      <img src="/src/products/images/about__img-1.png" alt="" />
+      <img src="/assets/images/about__img-1.png" alt="" />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat, augue a volutpat
         hendrerit, sapien tortor faucibus augue, a maximus elit ex vitae libero. Sed quis mauris
@@ -31,7 +31,7 @@
 
     <div class="about-us__bootom">
       <h2>Produced with care</h2>
-      <img src="/src/products/images/about__img-1.png" alt="" />
+      <img src="/assets/images/about__img-1.png" alt="" />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat, augue a volutpat
         hendrerit, sapien tortor faucibus augue, a maximus elit ex vitae libero. Sed quis mauris

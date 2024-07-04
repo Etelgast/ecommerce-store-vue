@@ -13,7 +13,7 @@ const modelValue = defineModel()
 <template>
   <div class="shop__input-wrapper">
     <input class="shop__input-search" type="text" placeholder="Search..." v-model="modelValue" />
-    <img src="./../../../assets/icons/search.svg" alt="Search" />
+    <img src="/assets/icons/search.svg" alt="Search" />
   </div>
 </template>
 

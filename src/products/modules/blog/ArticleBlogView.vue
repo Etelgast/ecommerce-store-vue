@@ -36,7 +36,7 @@ onBeforeMount(() => {
         by <span>{{ article.author }}</span> - {{ transformDate(article.date) }}
       </h3>
     </div>
-    <img :src="'/src/products/images/' + article.main_img" alt="Main Image of Article" />
+    <img :src="'/assets/images/' + article.main_img" alt="Main Image of Article" />
     <div class="article-wrapper">
       <div class="article__content">
         <p>{{ article.content }}</p>

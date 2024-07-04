@@ -36,7 +36,7 @@ const isAddedToProducts = computed(() => {
     <div class="wrapper">
       <img
         class="card-img"
-        :src="`/src/products/images/${props.product.img}`"
+        :src="`/assets/images/${props.product.img}`"
         alt="Product"
         @click.self="getFullProductCard"
       />
@@ -49,7 +49,7 @@ const isAddedToProducts = computed(() => {
           />
           <img
             class="action-icon__eye"
-            src="/src/app/assets/icons/eye.svg"
+            src="/assets/icons/eye.svg"
             @click="getFullProductCard"
             alt="Full Card"
           />

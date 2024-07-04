@@ -118,7 +118,7 @@ onBeforeMount(() => {
           class="blog-content__article"
           @click="openingArticlePage(article.id)"
         >
-          <img :src="`/src/products/images/${article.image}`" alt="Article Image" />
+          <img :src="`/assets/images/${article.image}`" alt="Article Image" />
           <h5>{{ transfromArticleCategoriesWithDate(article) }}</h5>
           <h2>{{ article.title }}</h2>
           <p>{{ article.content }}</p>

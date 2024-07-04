@@ -13,12 +13,7 @@ defineProps({
       <span>{{ transformDate(comment.date) }}</span>
     </div>
     <div class="description__rate-stars">
-      <img
-        v-for="rate in comment.rate"
-        :key="rate"
-        src="/src/app/assets/icons/star.svg"
-        alt="rate"
-      />
+      <img v-for="rate in comment.rate" :key="rate" src="/assets/icons/star.svg" alt="rate" />
     </div>
     <p>
       {{ comment.content }}

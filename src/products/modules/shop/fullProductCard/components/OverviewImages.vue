@@ -8,11 +8,11 @@ defineProps({
 <template>
   <div class="main-info__side-images">
     <div class="side-img" v-for="(additionalImage, index) in additionalImages" :key="index">
-      <img :src="'/src/products/images/' + additionalImage" alt="Additional Image" />
+      <img :src="'/assets/images/' + additionalImage" alt="Additional Image" />
     </div>
   </div>
   <div class="main-info__main-image">
-    <img :src="'/src/products/images/' + mainImage" alt="Main Image" />
+    <img :src="'/assets/images/' + mainImage" alt="Main Image" />
   </div>
 </template>
 

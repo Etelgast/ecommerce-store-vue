@@ -65,7 +65,7 @@ watch(amount, () => {
             <img
               v-for="rate in props.fullProductCard.rate"
               :key="rate"
-              src="/src/app/assets/icons/star.svg"
+              src="/assets/icons/star.svg"
               alt="rate"
             />
           </div>

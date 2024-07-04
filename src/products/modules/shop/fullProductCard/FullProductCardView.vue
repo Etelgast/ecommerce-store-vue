@@ -88,7 +88,7 @@ onMounted(() => {
     font-family: $main-font;
 
     &::before {
-      content: url('/src/app/assets/icons/added-product.svg');
+      content: url('/assets/icons/added-product.svg');
       position: absolute;
       top: 0;
       left: -30px;
